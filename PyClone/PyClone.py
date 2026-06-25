@@ -138,7 +138,7 @@ def _clone_exports(tgt, ref, ref_path, new_section_name = '.rdata2'):
     # Write in our new export directory
     tgt.set_bytes_at_rva(
         final_rva, 
-        ref.get_data(ref_export_dir.VirtualAddress, ref_export_dir.Size) + exp_names_blob
+        bytes(ref.get_data(ref_export_dir.VirtualAddress, ref_export_dir.Size) + exp_names_blob)
     )
     tgt.set_bytes_at_rva(
         final_rva, 
