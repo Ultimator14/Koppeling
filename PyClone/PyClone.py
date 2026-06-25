@@ -130,8 +130,10 @@ def _clone_exports(tgt, ref, ref_path, new_section_name = '.rdata2'):
 
     # Apply RVA delta to directory
     export_dir.AddressOfFunctions += delta
-    export_dir.AddressOfNames += delta
-    export_dir.AddressOfNameOrdinals += delta
+    if export_dir.AddressOfNames > 0:
+        export_dir.AddressOfNames += delta
+    if export_dir.AddressOfNameOrdinals > 0:
+        export_dir.AddressOfNameOrdinals += delta
 
     # Write in our new export directory
     tgt.set_bytes_at_rva(
